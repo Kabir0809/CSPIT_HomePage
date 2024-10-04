@@ -284,6 +284,9 @@ img {
   color: var(--secondary-color);
 }
 
+.student-work .card-text{
+  font-weight: bold;
+}
 #programs{
   font-family: 'Roboto', sans-serif;
   background-color: #e1e1e1;
@@ -338,14 +341,14 @@ img {
 }
 
 
- .collaborations-section h2, .scalar-section h2, .event-news-wrap h2, .programs h2 {
+ .collaborations-section h2, .scalar-section h2, .event-news-wrap h2, .programs h2,.student-work h2, .thrust-areas h2 {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 20px;
   position: relative;
   text-align: center;
 }
-.collaborations-section h2::after, .scalar-section h2::after, .event-news-wrap h2::after,.programs h2::after{
+.collaborations-section h2::after, .scalar-section h2::after, .event-news-wrap h2::after,.programs h2::after, .student-work h2::after, .thrust-areas h2::after{
   content: '';
   display: block;
   width: 60px;
@@ -446,7 +449,9 @@ img {
   text-align: center;
   margin-top: 10px;
 }
-
+.circle-title h5{
+  font:bold;
+}
 section#thrust-areas {
   padding: 40px 0;
 }
@@ -506,7 +511,7 @@ section#thrust-areas {
 }
 
 .calendar-wrapper {
-  padding: 25px;
+  padding: 0px;
   background-color: #f8f9fa;
   border-radius: 8px;
 }
