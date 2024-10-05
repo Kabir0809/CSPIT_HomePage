@@ -446,7 +446,15 @@
         object-fit: cover;
         transform: translate(-50%, -50%);
       }
-
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; /* Change this value to adjust how much of the top is darkened */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)); /* Adjust the alpha for darkness */
+        z-index: 2; /* Ensure it is above the video */
+      }
       /* Overlay content settings (if you want to add any) */
       .video-overlay {
         position: absolute;
@@ -463,6 +471,189 @@
       }
     </style>
     <!-- <link href="css/style_1.css" rel="stylesheet" /> -->
+    <style>
+
+
+
+      .topbar {
+          background-color: transparent; /* Fully transparent */
+          color: white;
+          font-size: 0.9rem;
+          padding: 5px 0;
+          position: fixed;
+          top: 0;
+          width: 100%; /* Starts aligned with logo */
+          z-index: 1000;
+          transition: background-color 0.3s; /* Smooth transition */
+      }
+
+      .topbar a {
+          color: white;
+          margin-right: 15px;
+          text-decoration: none;
+          font-size: 16px; /* Smaller font size for topbar */
+          font-weight: 600;
+      }
+
+      /* Separator line */
+      .topbar-separator {
+          height: 1px; /* Thickness of the line */
+          background-color: white; /* Color of the line */
+          width: 100%; /* Match the width of the topbar */
+          position: fixed;
+          top: 40px; /* Position it right below the topbar */
+          z-index: 999; /* Ensure it appears above the background */
+      }
+
+      /* Navbar */
+      .navbar-custom {
+          background-color: transparent;
+          padding: 10px 0;
+          position: fixed;
+          top: 42px; /* Below the topbar */
+          width: 100%;
+          z-index: 1000;
+          transition: background-color 0.3s, padding 0.3s; /* Smooth transition */
+      }
+
+      /* Navbar with background change on scroll */
+      .navbar-custom.scrolled {
+          background-color: white; /* White background on scroll */
+          padding: 5px 0; /* Less padding when scrolled */
+      }
+
+      /* Logo styling */
+      .navbar-custom .navbar-brand {
+          display: flex;
+          align-items: center;
+      }
+
+
+
+      /* First row of navbar items */
+      .navbar-row-1 {
+          display: flex;
+          justify-content: flex-end;
+          gap: 8px; /* Smaller gap for the first row */
+          align-items: center;
+          font-size: 16px; /* Smaller font for first row */
+      }
+
+      /* Second row of navbar items */
+      .navbar-row-2 {
+          display: flex;
+          justify-content: flex-start; /* Align closer to logo */
+          gap: 60px; /* Larger gap between options */
+          align-items: center;
+          font-size: 20px; /* Larger font for second row */
+          margin-top: 10px; /* Bring the second row closer to the logo */
+          width: 100%; /* Second row takes up 80% width */
+      }
+
+      /* Navbar items styling */
+      .navbar-custom .nav-link {
+          color: white; /* Initial text color */
+          padding: 5px 10px;
+          font-weight: 600;
+          text-decoration: none; /* Remove underline from links */
+      }
+
+      /* Change text color on scroll */
+      .navbar-custom.scrolled .nav-link {
+          color: blue; /* Change text color on scroll */
+      }
+
+      /* Change the hover color of navbar menu options to yellow */
+      .navbar-row-2 .nav-link:hover, .navbar-row-1 .nav-link:hover{
+          color: #ffcc00 !important; /* Yellow hover effect */
+      }
+
+      /* Admissions button */
+      .btn-admission {
+          background-color: #ffcc00;
+          color: black;
+          font-weight: bold;
+          border-radius: 20px;
+          padding: 3px 15px;
+      }
+
+      .btn-admission:hover {
+          background-color: #ff9900;
+      }
+
+      /* Search icon */
+      .search-icon {
+          font-size: 1.5rem;
+          color: white;
+      }
+
+      /* Dropdown Menu Styling */
+      .dropdown-menu {
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Gradient background */
+          border-radius: 8px; /* Rounded corners */
+          padding: 10px; /* Padding for the dropdown */
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
+          transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade and transform */
+          transform: translateY(-10px); /* Initial upward position */
+          opacity: 0; /* Initially hidden */
+          visibility: hidden; /* Initially hidden */
+          display: flex; /* Use flexbox for horizontal layout */
+          flex-direction: row; /* Align items in a row */
+          justify-content: flex-start; /* Align items to the start */
+      }
+
+      /* Show dropdown on hover */
+      .navbar-row-2 .dropdown:hover .dropdown-menu {
+          display: flex; /* Keep it as flex on hover */
+          opacity: 1; /* Fade in */
+          visibility: visible; /* Ensure it’s visible */
+          transform: translateY(0); /* Move down into position */
+      }
+
+      /* Dropdown Item Styling */
+      .dropdown-item {
+          color: #333; /* Darker text color */
+          padding: 10px 15px; /* Padding for items */
+          font-weight: 500; /* Font weight */
+          transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+          margin-right: 15px; /* Add some space between items */
+          border-radius: 4px; /* Rounded corners for items */
+      }
+
+      /* Remove margin from last item */
+      .dropdown-item:last-child {
+          margin-right: 0; /* No margin for the last item */
+      }
+
+      /* Hover Effect for Dropdown Items */
+      .dropdown-item:hover {
+          background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background on hover */
+          color: #007bff; /* Change text color on hover */
+      }
+
+      /* Optional: Add a subtle animation */
+      .dropdown-item {
+          position: relative; /* For pseudo-element */
+      }
+
+      .dropdown-item::after {
+          content: ""; /* Pseudo-element for underline */
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 2px;
+          background-color: #007bff; /* Accent color for the underline */
+          transform: scaleX(0); /* Start hidden */
+          transition: transform 0.3s ease; /* Smooth animation */
+      }
+
+      .dropdown-item:hover::after {
+          transform: scaleX(1); /* Show underline on hover */
+      }
+  </style>
+
+
   </head>
 
   <body id="home">
@@ -479,134 +670,10 @@
         style="display: none; visibility: hidden"
       ></iframe
     ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!--         -->
 
     <section id="banner" class="section-1">
       <!-- navbar -->
-
-      <!-- <section>
-        <div class="container-fluid topbar bg-light px-5 d-none d-lg-block">
-          <div class="row gx-0 align-items-center">
-            <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-              <div class="d-flex flex-wrap">
-                <a href="#" class="text-muted small me-4"
-                  ><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A
-                  Location</a
-                >
-                <a href="tel:+01234567890" class="text-muted small me-4"
-                  ><i class="fas fa-phone-alt text-primary me-2"></i
-                  >+01234567890</a
-                >
-                <a href="mailto:example@gmail.com" class="text-muted small me-0"
-                  ><i class="fas fa-envelope text-primary me-2"></i
-                  >Example@gmail.com</a
-                >
-              </div>
-            </div>
-            <div class="col-lg-4 text-center text-lg-end">
-              <div class="d-inline-flex align-items-center" style="height: 45px">
-                <a href="#"
-                  ><small class="me-3 text-dark"
-                    ><i class="fa fa-user text-primary me-2"></i>Register</small
-                  ></a
-                >
-                <a href="#"
-                  ><small class="me-3 text-dark"
-                    ><i class="fa fa-sign-in-alt text-primary me-2"></i
-                    >Login</small
-                  ></a
-                >
-                <div class="dropdown">
-                  <a
-                    href="#"
-                    class="dropdown-toggle text-dark"
-                    data-bs-toggle="dropdown"
-                    ><small
-                      ><i class="fa fa-home text-primary me-2"></i> My
-                      Dashboard</small
-                    ></a
-                  >
-                  <div class="dropdown-menu rounded">
-                    <a href="#" class="dropdown-item"
-                      ><i class="fas fa-user-alt me-2"></i> My Profile</a
-                    >
-                    <a href="#" class="dropdown-item"
-                      ><i class="fas fa-comment-alt me-2"></i> Inbox</a
-                    >
-                    <a href="#" class="dropdown-item"
-                      ><i class="fas fa-bell me-2"></i> Notifications</a
-                    >
-                    <a href="#" class="dropdown-item"
-                      ><i class="fas fa-cog me-2"></i> Account Settings</a
-                    >
-                    <a href="#" class="dropdown-item"
-                      ><i class="fas fa-power-off me-2"></i> Log Out</a
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="container-fluid position-relative p-0">
-          <nav
-            class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
-          >
-            <a href="" class="navbar-brand p-0">
-            </a>
-            <img
-                  src="images1/logo1.png"
-                  class="img-fluid"
-                  alt=""
-                  style="width: 80px; height: auto ; margin-right: 5px;"
-              />
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarCollapse"
-            >
-              <span class="fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <div class="navbar-nav ms-auto py-0">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link">Services</a>
-                <a href="#" class="nav-item nav-link">Blogs</a>
-                <div class="nav-item dropdown">
-                  <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                    <span class="dropdown-toggle">Pages</span>
-                  </a>
-                  <div class="dropdown-menu m-0">
-                    <a href="#" class="dropdown-item">Our Features</a>
-                    <a href="#" class="dropdown-item">Our team</a>
-                    <a href="#" class="dropdown-item"
-                      >Testimonial</a
-                    >
-                    <a href="#" class="dropdown-item">Our offer</a>
-                    <a href="#" class="dropdown-item">FAQs</a>
-                    <a href="#" class="dropdown-item">404 Page</a>
-                  </div>
-                </div>
-                <a href="#" class="nav-item nav-link">Contact Us</a>
-              </div>
-              <a
-                href="#"
-                class="btn btn-primary rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0"
-                >Get Started</a
-              >
-            </div>
-          </nav>
-        </div>
-      </section> -->
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="js/main.js"></script> -->
-
-      <div class="container-fluid nav-wrap d-none d-lg-block">
+      <!-- <div class="container-fluid nav-wrap d-none d-lg-block">
         <nav id="navbar_top" class="navbar navbar-expand-lg border-bottom-0">
           <div class="container-fluid px-0 align-items-stretch">
             <div class="col-1 navbar-brand m-0 p-0 text-center">
@@ -858,67 +925,214 @@
             </div>
           </div>
         </nav>
-      </div>
+      </div> -->
 
-      <div class="container-fluid nav-wrap-sm d-block d-lg-none">
-        <div class="row">
-          <div class="col-9">
-            <div class="navbar-brand m-0 p-0 text-center">
-              <a href="/">
-                <div class="logo-box-wrap">
-                  <img src="images1/logo1.png" class="img-fluid" alt="" />
-                </div>
-              </a>
-            </div>
+
+
+      <!-- Topbar -->
+    <section id="topbar" class="d-none d-lg-block">
+      <div class="topbar">
+          <div class="container-fluid d-flex justify-content-between">
+              <div class="left-links">
+                  <a href="#">Students</a>
+                  <a href="faculty.html">Faculty & Staff</a>
+                  <a href="#">Parents</a>
+                  <a href="#">Visitors</a>
+                  <a href="#">Alumni</a>
+                  <a href="#">Examinations</a>
+                  <a href="#">Campuses</a>
+              </div>
+              <div class="right-links">
+                  <a class="btn btn-admission">Admissions</a>
+              </div>
           </div>
-          <!-- SEARCHH -->
-          <div class="col-3 d-flex justify-content-center hamburger-wrap">
-            <div class="search-icon">
-              <a class="pr-4" href="#">
-                <i
-                  onclick="javascript:$('.search-block').show();"
-                  class="fa fa-search"
-                  aria-hidden="true"
-                ></i>
+      </div>
+    </section>
+
+    <!-- Separator Line -->
+    <div class="topbar-separator d-none d-lg-block"></div>
+
+    <!-- Navbar -->
+    <section id="navbar" class="d-none d-lg-block">
+      <nav class="navbar navbar-expand-lg navbar-custom">
+          <div class="container">
+              <a class="navbar-brand" href="#">
+                  <img src="images1/logo1.png" alt="Logo" class="logo" style="width: 90px;" />
+                  <!-- Replace with your logo -->
               </a>
-            </div>
-            <div class="mx-auto bar-wrap">
-              <button
-                class="navbar-toggler p-0 border-0"
-                type="button"
-                data-toggle="offcanvas"
-              >
-                <span class="bar mt-0"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-              </button>
-            </div>
+
+              <div class="navbar-content">
+                  <!-- First row -->
+                  <div class="navbar-row-1">
+                      <a class="nav-link" href="#">News</a>
+                      <a class="nav-link" href="#">Events</a>
+                      <a class="nav-link" href="#">Blog</a>
+                      <a class="nav-link" href="#">Careers</a>
+                      <a class="nav-link" href="#">Contact us</a>
+                  </div>
+                  <!-- Second row -->
+                  <div class="navbar-row-2">
+                    <div class="dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        >Academics</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Undergraduate</a></li>
+                        <li><a class="dropdown-item" href="#">Postgraduate</a></li>
+                        <li><a class="dropdown-item" href="#">Courses</a></li>
+                      </ul>
+                    </div>
+                      <div class="dropdown">
+                          <a
+                              class="nav-link dropdown-toggle"
+                              href="#"
+                              role="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">Research</a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Research Areas</a></li>
+                              <li><a class="dropdown-item" href="#">Publications</a></li>
+                          </ul>
+                      </div>
+                      <div class="dropdown">
+                          <a
+                              class="nav-link dropdown-toggle"
+                              href="#"
+                              role="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">Campus Life</a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Events</a></li>
+                              <li><a class="dropdown-item" href="#">Clubs & Organizations</a></li>
+                          </ul>
+                      </div>
+                      <div class="dropdown">
+                          <a
+                              class="nav-link dropdown-toggle"
+                              href="#"
+                              role="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">Departements</a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Information Technology</a></li>
+                              <li><a class="dropdown-item" href="#">Computer Engineering</a></li>
+                          </ul>
+                      </div>
+                      <div class="dropdown">
+                          <a
+                              class="nav-link dropdown-toggle"
+                              href="#"
+                              role="button"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">Committees</a>
+                          <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Anti-Ragging</a></li>
+                              <li><a class="dropdown-item" href="#">Grievance Redressal</a></li>
+                          </ul>
+                      </div>
+                      <a class="nav-link" href="#"
+                          ><i class="fas fa-search search-icon" ></i
+                      ></a>
+                  </div>
+              </div>
           </div>
-          <div class="search-block">
-            <button
-              onclick="javascript:$('.search-block').hide();"
-              type="button"
-              class="close"
-              aria-label="Close"
-            >
-              <i class="fas fa-times-circle"></i>
-            </button>
-            <form id="searchForm" action="/search/">
-              <input
-                name="q"
-                type="text"
-                id="btn-search"
-                placeholder="Start Searching"
-                class="form-control"
-                value=""
-              />
-              <button type="submit">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </form>
+      </nav>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.addEventListener("scroll", function () {
+          const searchIcon = document.querySelector('.search-icon');
+          const topbar = document.querySelector(".topbar");
+          const navbar = document.querySelector(".navbar-custom");
+          const navbarLinks = document.querySelectorAll(".navbar-custom .nav-link");
+          const navbarRow1 = document.querySelector(".navbar-row-1"); // First row of the navbar
+          const scrollPosition = window.scrollY;
+
+          if (scrollPosition > 10) {
+              topbar.style.backgroundColor = "#0c4da2"; // Change topbar background to blue
+              navbar.classList.add("scrolled");
+              navbarRow1.style.opacity = "0"; // Hide first row
+              navbarRow1.style.display = "none"; // Set display to none to hide
+              searchIcon.style.color = "blue"; // Change the search icon color to blue
+              navbarLinks.forEach((link) => (link.style.color = "#0c4da2")); // Change text color to blue
+          } else {
+              topbar.style.backgroundColor = "transparent"; // Keep topbar transparent
+              navbar.classList.remove("scrolled");
+              navbarRow1.style.opacity = "1"; // Show first row
+              navbarRow1.style.display = "flex"; // Set display to flex to show
+              searchIcon.style.color = "white"; // Reset the search icon color to white
+              navbarLinks.forEach((link) => (link.style.color = "white")); // Reset text color to white
+          }
+      });
+  </script>
+
+    <div class="container-fluid nav-wrap-sm d-block d-lg-none">
+      <div class="row">
+        <div class="col-9">
+          <div class="navbar-brand m-0 p-0 text-center">
+            <a href="/">
+              <div class="logo-box-wrap">
+                <img src="images1/logo1.png" class="img-fluid" alt="" />
+              </div>
+            </a>
           </div>
         </div>
+        <!-- SEARCHH -->
+        <div class="col-3 d-flex justify-content-center hamburger-wrap">
+          <div class="search-icon">
+            <a class="pr-4" href="#">
+              <i
+                onclick="javascript:$('.search-block').show();"
+                class="fa fa-search"
+                aria-hidden="true"
+              ></i>
+            </a>
+          </div>
+          <div class="mx-auto bar-wrap">
+            <button
+              class="navbar-toggler p-0 border-0"
+              type="button"
+              data-toggle="offcanvas"
+            >
+              <span class="bar mt-0"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </button>
+          </div>
+        </div>
+        <div class="search-block">
+          <button
+            onclick="javascript:$('.search-block').hide();"
+            type="button"
+            class="close"
+            aria-label="Close"
+          >
+            <i class="fas fa-times-circle"></i>
+          </button>
+          <form id="searchForm" action="/search/">
+            <input
+              name="q"
+              type="text"
+              id="btn-search"
+              placeholder="Start Searching"
+              class="form-control"
+              value=""
+            />
+            <button type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
       </div>
+    </div>
+
       <!-- SIDEBAR -->
       <nav
         class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark d-block d-lg-none"
@@ -1062,7 +1276,7 @@
           <source src="videoplayback (2).mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
-
+        <div class="overlay"></div>
       </div>
       <!-- carosal end-->
     </section>
@@ -2048,12 +2262,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-
 
     <div class="container-fluid px-0 mb-60" id="take-tour">
       <div class="container">
