@@ -163,8 +163,9 @@ input[type="submit"] {
   left: 50%; /* Centering */
   transform: translateX(-50%); /* Centering */
   background-color: #033c67;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
-  background-size: cover;
+
+  background-image: linear-gradient(rgba(0,0,0, 0.6), rgba(0, 0, 0, 0.6));
+  background-size: couver;
   background-repeat: no-repeat;
   background-position: center;
   padding: 50px 0;
@@ -341,14 +342,15 @@ img {
 }
 
 
- .collaborations-section h2, .scalar-section h2, .event-news-wrap h2, .programs h2,.student-work h2, .thrust-areas h2 {
+ .collaborations-section h2, .scalar-section h2, .event-news-wrap h2, .programs h2,.student-work h2, .thrust-areas h2,.feedback-section h2 {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 20px;
   position: relative;
   text-align: center;
+  font-family: 'Playfair Display', serif;
 }
-.collaborations-section h2::after, .scalar-section h2::after, .event-news-wrap h2::after,.programs h2::after, .student-work h2::after, .thrust-areas h2::after{
+.collaborations-section h2::after, .scalar-section h2::after, .event-news-wrap h2::after,.programs h2::after, .student-work h2::after, .thrust-areas h2::after,.feedback-section h2::after{
   content: '';
   display: block;
   width: 60px;
@@ -418,6 +420,7 @@ img {
   background-color: #007bff;
 }
 
+/*----------------------- THRUST AREA-------------------- */
 .circle-item {
   border: none;
   overflow: hidden;
@@ -474,8 +477,77 @@ section#thrust-areas {
   width: calc(25% - 10px); /* Adjust for 4 centered items */
   margin: 5px;
 }
+/* General Styles */
+.thrust-areas {
+  padding: 40px 0; /* Add some padding to the section */
+}
+
+/* Circle item styles */
+.circle-item {
+  display: flex;
+  justify-content: center; /* Center the image within the circle item */
+  align-items: center; /* Center align the items */
+}
 
 
+
+/* Responsive Rows */
+.row-cols-custom-5 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensure even spacing */
+}
+
+.row-cols-custom-4 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the circles */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .row-cols-custom-5 .col {
+    flex: 0 0 30%; /* Two items per row on medium screens */
+    max-width: 30%; /* Limit the max width */
+    margin-bottom: 20px; /* Space between rows */
+  }
+
+  .row-cols-custom-4 .col {
+    flex: 0 0 30%; /* One item per row on small screens */
+    max-width: 30%; /* Limit the max width */
+    margin-bottom: 20px; /* Space between rows */
+  }
+
+}
+
+@media (max-width: 576px) {
+  .circle-title {
+    font-size: 1rem; /* Reduce font size for smaller screens */
+  }
+
+  /* Adjusting margins and padding on smaller devices */
+  .circle-body {
+    padding: 10px 0; /* Add padding for better spacing */
+  }
+  .circle-item img {
+    width: 90%; /* Adjust size for smaller screens */
+    height: 90%; /* Adjust size for smaller screens */
+}
+.row-cols-custom-5 .col {
+  flex: 0 0 45%; /* Two items per row on medium screens */
+  max-width: 45%; /* Limit the max width */
+  margin-bottom: 20px; /* Space between rows */
+}
+
+.row-cols-custom-4 .col {
+  flex: 0 0 45%; /* One item per row on small screens */
+  max-width: 45%; /* Limit the max width */
+  margin-bottom: 20px; /* Space between rows */
+}
+}
+
+
+/* ------------------ EVENTS -------------------------- */
 .upcoming-events-section {
   padding: 40px 0;
 }
@@ -538,6 +610,7 @@ section#thrust-areas {
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 30px;
+  width:100%;
 }
 
 .dean-principal-message-title {
@@ -573,6 +646,154 @@ section#thrust-areas {
 .dean-principal-hr {
   border-top: 2px solid #900c3f;
 }
+
+/* --------------- TESTIMONIALS------------------ */
+
+.feedback-section {
+  background-color: #033c67;
+  padding: 30px 20px;
+  color: white;
+}
+
+/* Horizontal Navigation Bar */
+.feedback-navbar {
+  background-color: #033c67;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Navbar Link Style - Default Blue Text */
+.feedback-navbar a {
+  color: #033c67; /* Default blue text */
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 15px;
+  text-decoration: none;
+  padding: 12px 30px;
+  background: #f2f2f2;
+  border-radius: 30px;
+  transition: 0.3s;
+}
+
+/* Hover Effect - White Text */
+.feedback-navbar a:hover,
+.feedback-navbar a.active {
+  background-color: #007bff; /* Blue background on hover and active */
+  color: white; /* White text on hover and active */
+  box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  background-color: white;
+  color: #333;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 20px;
+  transition: transform 0.5s ease;
+}
+.testimonial-card:hover {
+  transform: scale(1.05); /* Slightly increase the size */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Optional: Add a shadow for depth */
+}
+
+.testimonial-card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.testimonial-card h5 {
+  color: #007bff;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  color: #6c757d;
+}
+
+/* Hide inactive sections */
+.feedback-content {
+  display: none;
+}
+
+.feedback-content.active {
+  display: block;
+}
+
+/* Fade-in effect */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Start fully transparent */
+    transform: scale(0.9); /* Slightly scale down */
+  }
+  to {
+    opacity: 1; /* End fully visible */
+    transform: scale(1); /* Scale to original size */
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Hide inactive sections */
+.feedback-content {
+  display: none;
+}
+
+.feedback-content.active {
+  display: block;
+}
+/* Responsive Styles for the Feedback Section */
+.feedback-navbar {
+  display: flex; /* Ensure navbar items are displayed in a row */
+  flex-wrap: wrap; /* Allow navbar items to wrap on small screens */
+}
+
+/* Testimonial Card Responsiveness */
+.feedback-content .testimonial-card {
+  margin-bottom: 15px; /* Reduce margin for smaller screens */
+}
+
+@media (max-width: 576px) {
+  .feedback-content .testimonial-card {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .feedback-navbar a {
+    margin: 5px; /* Reduce margin for navbar links on small screens */
+    font-size: 1rem; /* Reduce font size for navbar links */
+    padding: 10px 20px; /* Adjust padding for navbar links */
+  }
+
+  /* Stack cards vertically on small screens */
+  .feedback-content .row {
+    flex-direction: column; /* Change row direction to column */
+    align-items: center; /* Center the items */
+  }
+}
+
 
 
 address {
