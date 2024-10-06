@@ -507,6 +507,7 @@
 
       /* Navbar */
       .navbar-custom {
+        font-family: 'Montserrat', sans-serif;
           background-color: transparent;
           padding: 10px 0;
           position: fixed;
@@ -570,7 +571,7 @@
 
       /* Admissions button */
       .btn-admission {
-          background-color: #ffcc00;
+          background-color: #ff6a00;
           color: black;
           font-weight: bold;
           border-radius: 20px;
@@ -653,6 +654,8 @@
       }
   </style>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   </head>
 
@@ -2201,7 +2204,136 @@
 
     </section>
 
-    <section class="section-4 research mb-80" id="research">
+    <section id="testimonials">
+      <div class="feedback-section">
+        <h2 class="text-center" style="font: bold;">Testimonials</h2>
+          <!-- Horizontal Navigation Bar -->
+          <div class="feedback-navbar">
+          <a href="#" class="nav-link active" data-target="parent-feedback">Parents</a>
+          <a href="#" class="nav-link" data-target="employer-feedback">Employers</a>
+          <a href="#" class="nav-link" data-target="student-feedback">Students</a>
+          <a href="#" class="nav-link" data-target="alumni-feedback">Alumni</a>
+          </div>
+
+          <div id="parent-feedback" class="feedback-content active fade-in">
+          <div class="row">
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/AbhishekPatel.webp" alt="Parent">
+                  <h5>John Doe</h5>
+                  <p>"This college provided excellent support for my child's education. Highly recommended!"</p>
+              </div>
+              </div>
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/Akshitakadam.webp" alt="Parent">
+                  <h5>Jane Smith</h5>
+                  <p>"The faculty is amazing, and my son has grown academically and personally!"</p>
+              </div>
+              </div>
+          </div>
+          </div>
+
+          <div id="employer-feedback" class="feedback-content">
+          <div class="row">
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/AneriPandya.webp" alt="Employer">
+                  <h5>ABC Corp</h5>
+                  <p>"The graduates from this college are well-prepared and contribute significantly to our company."</p>
+              </div>
+              </div>
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/PavitraModi.webp" alt="Employer">
+                  <h5>XYZ Inc.</h5>
+                  <p>"Impressed by the quality of education and professionalism of the students."</p>
+              </div>
+              </div>
+          </div>
+          </div>
+
+          <div id="student-feedback" class="feedback-content">
+          <div class="row">
+              <div class="col-md-4">
+                <div class="testimonial-card">
+                    <img src="faculty_image/AvaniKhokhariya.webp" alt="Student">
+                    <h5>Alice Brown</h5>
+                    <p>"The college has been a life-changing experience. Great opportunities for growth."</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/Akshitakadam.webp" alt="Student">
+                  <h5>David Clark</h5>
+                  <p>"Amazing environment and supportive faculty. I am ready for the professional world!"</p>
+              </div>
+              </div>
+          </div>
+          </div>
+
+          <div id="alumni-feedback" class="feedback-content">
+          <div class="row">
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/AbhishekPatel.webp" alt="Alumni">
+                  <h5>Emily Wilson</h5>
+                  <p>"The connections and knowledge I gained here have been invaluable in my career."</p>
+              </div>
+              </div>
+              <div class="col-md-4">
+              <div class="testimonial-card">
+                  <img src="faculty_image/AvaniKhokhariya.webp" alt="Alumni">
+                  <h5>Michael Lee</h5>
+                  <p>"I cherish the friendships and professional networks I built during my time at the college."</p>
+              </div>
+              </div>
+          </div>
+          </div>
+      </div>
+      </section>
+
+      <script>
+        document.querySelectorAll('.feedback-navbar a').forEach(link => {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = this.getAttribute('data-target');
+
+            // Remove active class from all links
+            document.querySelectorAll('.feedback-navbar a').forEach(nav => nav.classList.remove('active'));
+
+            // Add active class to clicked link
+            this.classList.add('active');
+
+            // Fade out current content
+            const currentContent = document.querySelector('.feedback-content.active');
+
+            // Start fade out animation
+            currentContent.classList.add('fade-out');
+
+            // Wait for fade-out animation to complete
+            currentContent.addEventListener('animationend', function () {
+              // Remove active class from current content
+              currentContent.classList.remove('active');
+              currentContent.classList.remove('fade-out');
+
+              // Fade in new content
+              const newContent = document.getElementById(target);
+              newContent.classList.add('fade-in');
+              newContent.classList.add('active');
+
+              // Start fade-in animation
+              newContent.addEventListener('animationend', function () {
+                newContent.classList.remove('fade-in');
+              }, { once: true }); // Ensure this runs only once
+            }, { once: true }); // Ensure this runs only once
+          });
+        });
+    </script>
+
+
+<br><br>
+    <!-- <section class="section-4 research mb-80" id="research">
       <div class="container-fluid event-news-wrap">
         <div class="row mb-3">
           <div
@@ -2218,8 +2350,6 @@
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Aspernatur sequi vitae doloremque.
                   </p>
-                  <!--                            <p>Breakthrough Research on Rapidity of Evolution</p>-->
-                  <!--                            <div class="mt-4 text-center"><a class="banner-btn my-3 ml-3 ml-sm-5 ml-md-5 ml-lg-0 hvr-sweep-to-right" href="https://ahduni.edu.in/academics/schools-centres/school-of-arts-and-sciences/news/breakthrough-research-on-rapidity-of-evolution/" role="button">Read More >></a></div>-->
                   <div class="mt-4 text-center">
                     <a
                       class="banner-btn my-3 ml-3 ml-sm-5 ml-md-5 ml-lg-0 hvr-sweep-to-right"
@@ -2233,17 +2363,11 @@
               <div
                 class="col-md-6 pl-xl-5 pl-lg-4 pl-md-3 pl-sm-5 mb-4 mb-sm-0"
               >
-                <!-- <img class="img-fluid" src="site/templates/images/research--img2.jpg" /> -->
-                <img
+                 <img
                   class="img-fluid"
                   src="images/1600%20x%201080%20Li-on%20Batteries.jpg"
                 />
                 <div class="banner-para">
-                  <!--                            <p>Improving Brain Tumour Diagnosis with AI</p>-->
-                  <!-- <p>Novel miRNA Discovery in Saliva to Restrict Invasive Biopsies in Oral Cancer</p> -->
-                  <!-- <p>Recycling Glass Can Enhance Energy Efficiency, Reduce Environmental Impact</p> -->
-                  <!--                            <div class="mt-4 text-center"><a class="banner-btn my-3 ml-3 ml-sm-5 ml-md-5 ml-lg-0 hvr-sweep-to-right" href="https://ahduni.edu.in/academics/schools-centres/school-of-engineering-and-applied-science/news/improving-brain-tumour-diagnosis-with-ai/" role="button">Read More >></a></div>-->
-                  <!-- <div class="mt-4 text-center"><a class="banner-btn my-3 ml-3 ml-sm-5 ml-md-5 ml-lg-0 hvr-sweep-to-right" href="https://ahduni.edu.in/stepwell/stepwell-newsletter/novel-mirna-discovery-in-saliva-to-restrict-invasive-biopsies-in-oral-cancer/" role="button">Read More >></a></div> -->
                   <p>
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad
                     similique eligendi non officia doloremque libero.
@@ -2261,7 +2385,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <div class="container-fluid px-0 mb-60" id="take-tour">
       <div class="container">
